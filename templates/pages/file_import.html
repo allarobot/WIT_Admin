@@ -7,7 +7,10 @@
 {% block page_wrapper %}
 
         <div id="page-wrapper">
-
+            <div class="row">
+             <h1 class="page-header">Import Files</h1>
+                <!-- /.col-lg-12 -->
+            </div>
          <div class="row">
              <div class="col-lg-4">
                     <div class="panel panel-default">
@@ -166,7 +169,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="graph" style="height: 500px"></div>
+                            <div id="graph" style="height: 600px"></div>
                             <!--<div id="morris-area-chart"></div>-->
                         </div>
                         <!-- /.panel-body -->
@@ -184,22 +187,6 @@
 {% endblock %}
 
 {% block page_js %}
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
 
 <script type="text/javascript">
 var dom = document.getElementById("graph");
@@ -207,9 +194,8 @@ var myChart = echarts.init(dom);
 var app = {};
 option = null;
 myChart.showLoading();
-$.get({{ url_for("static",filename="data/les-miserables.gexf") }}, function (xml) {
+$.get({{ url_for('static',filename='data/les-miserables.gexf') }}, function (xml) {
     myChart.hideLoading();
-
     var graph = echarts.dataTool.gexf.parse(xml);
     var categories = [];
     for (var i = 0; i < 9; i++) {
