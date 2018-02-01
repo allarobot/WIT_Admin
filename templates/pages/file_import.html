@@ -1,0 +1,280 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+    <title>WIT Admin</title>
+{% endblock %}
+
+{% block page_wrapper %}
+
+        <div id="page-wrapper">
+
+         <div class="row">
+             <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> JSW
+
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <form id="jsw" action="{{ url_for('jsw') }}" method="post">
+                                <div class="row">
+                                    <div class="col-lg-2"><input type="file"  name="jswfile" value="jsw文件"></div>
+                                    <div class="clol-lg-2"><div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#">Action</a>
+                                        </li>
+                                        <li><a href="#">Another action</a>
+                                        </li>
+                                        <li><a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                                </div>
+
+
+        <!--<input type="submit" value="提交">-->
+        </form>
+                            <!--<div id="morris-area-chart"></div>-->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+             <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> ditmco
+
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+
+                             <form id="ditmco" action={{ url_for('ditmco') }} method="post">
+                                                            <div class="row">
+                                    <div class="col-lg-2"><input type="file" id="Myfile2" name="ditmcofile" value="pgv文件"></div>
+                                    <div class="clol-lg-2"> <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Action</a>
+                                        </li>
+                                        <li><a href="#">Another action</a>
+                                        </li>
+                                        <li><a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                                </div>
+
+
+        <!--<input type="submit" value="提交">-->
+        </form>
+                            <!--<div id="morris-area-chart"></div>-->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+             <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> clear
+
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                                     <form id="clear" action={{ url_for('clear') }} method="post">
+
+                                <div class="btn-group pull-left">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu " role="menu">
+                                        <li><a href="#">Action</a>
+                                        </li>
+                                        <li><a href="#">Another action</a>
+                                        </li>
+                                        <li><a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+        </form>
+
+                            <!--<div id="morris-area-chart"></div>-->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+
+
+
+
+         </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Graph
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#">Action</a>
+                                        </li>
+                                        <li><a href="#">Another action</a>
+                                        </li>
+                                        <li><a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="graph" style="height: 500px"></div>
+                            <!--<div id="morris-area-chart"></div>-->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+
+            </div>
+
+        </div>
+
+
+        <!-- /#page-wrapper -->
+{% endblock %}
+
+{% block page_js %}
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript">
+var dom = document.getElementById("graph");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+myChart.showLoading();
+$.get({{ url_for("static",filename="data/les-miserables.gexf") }}, function (xml) {
+    myChart.hideLoading();
+
+    var graph = echarts.dataTool.gexf.parse(xml);
+    var categories = [];
+    for (var i = 0; i < 9; i++) {
+        categories[i] = {
+            name: '类目' + i
+        };
+    }
+    graph.nodes.forEach(function (node) {
+        node.itemStyle = null;
+        node.value = node.symbolSize;
+        node.symbolSize /= 1.5;
+        node.label = {
+            normal: {
+                show: node.symbolSize > 30
+            }
+        };
+        node.category = node.attributes.modularity_class;
+    });
+    option = {
+        title: {
+            text: 'Les Miserables',
+            subtext: 'Default layout',
+            top: 'bottom',
+            left: 'right'
+        },
+        tooltip: {},
+        legend: [{
+            // selectedMode: 'single',
+            data: categories.map(function (a) {
+                return a.name;
+            })
+        }],
+        animationDuration: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series : [
+            {
+                name: 'Les Miserables',
+                type: 'graph',
+                layout: 'none',
+                data: graph.nodes,
+                links: graph.links,
+                categories: categories,
+                roam: true,
+                label: {
+                    normal: {
+                        position: 'right',
+                        formatter: '{b}'
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        color: 'source',
+                        curveness: 0.3
+                    }
+                }
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+}, 'xml');;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+{% endblock %}
+
+</html>
