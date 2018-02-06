@@ -310,11 +310,8 @@
        {% block page_wrapper %}
        {% endblock %}
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
-
-
 
     <!-- jQuery -->
     <script src={{ url_for("static", filename="vendor/jquery/jquery.min.js") }}></script>
@@ -324,8 +321,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src={{ url_for("static", filename="dist/js/sb-admin-2.js") }}></script>
-    <script src={{ url_for("static",filename='vendor/echarts/echarts.js') }}></script>
-    <script src={{ url_for("static",filename='vendor/echarts/dataTool.min.js') }}></script>
+    <script src={{ url_for("static",filename="vendor/echarts/echarts.js") }}></script>
+    <script src={{ url_for("static",filename="vendor/echarts/dataTool.min.js") }}></script>
 
     {% block page_js %}
     {% endblock %}

@@ -30,9 +30,9 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu pull-right" role="menu">
-                                            <li><a href="#">Action</a>
+                                            <li><a onclick="document.getElementById('jsw').submit();">单个JSW文件</a>
                                             </li>
-                                            <li><a href="#">Another action</a>
+                                            <li><a href="#" onclick="submit()">Another action</a>
                                             </li>
                                             <li><a href="#">Something else here</a>
                                             </li>
@@ -73,7 +73,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Action</a>
+                                        <li><a onclick="document.getElementById('ditmco').submit();">单个PVG文件</a>
                                         </li>
                                         <li><a href="#">Another action</a>
                                         </li>
@@ -103,8 +103,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <form id="clear" action={{ url_for(
-                    'clear') }} method="post">
+                    <form id="clear" action={{ url_for('clear') }} method="post">
 
                     <div class="btn-group pull-left">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -112,7 +111,8 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu " role="menu">
-                            <li><a href="#">Action</a>
+
+                            <li><a onclick="document.getElementById('clear').submit();">清空数据库</a>
                             </li>
                             <li><a href="#">Another action</a>
                             </li>
@@ -133,6 +133,15 @@
         </div>
 
 
+    </div>
+    <div class="row">
+                <div class="col-lg-12">
+            <div class="panel panel-default">
+            {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+            </div>
+                </div>
     </div>
     <!-- /.row -->
     <div class="row">
@@ -179,80 +188,7 @@
 {% endblock %}
 
 {% block page_js %}
-<script type="text/javascript">
-var dom = document.getElementById("graph_chart");
-var myChart = echarts.init(dom);
-var app = {};
-option = null;
-myChart.showLoading();
-$.get('static/data/les-miserables.xml', function (xml) {
-    myChart.hideLoading();
-
-    var graph = echarts.dataTool.gexf.parse(xml);
-    var categories = [];
-    for (var i = 0; i < 9; i++) {
-        categories[i] = {
-            name: '类目' + i
-        };
-    }
-    graph.nodes.forEach(function (node) {
-        node.itemStyle = null;
-        node.value = node.symbolSize;
-        node.symbolSize /= 1.5;
-        node.label = {
-            normal: {
-                show: node.symbolSize > 30
-            }
-        };
-        node.category = node.attributes.modularity_class;
-    });
-    option = {
-        title: {
-            text: '数据节点浏览',
-            subtext: 'Default layout',
-            top: 'bottom',
-            left: 'right'
-        },
-        tooltip: {},
-        legend: [{
-            // selectedMode: 'single',
-            data: categories.map(function (a) {
-                return a.name;
-            })
-        }],
-        animationDuration: 1500,
-        animationEasingUpdate: 'quinticInOut',
-        series : [
-            {
-                name: 'Les Miserables',
-                type: 'graph',
-                layout: 'none',
-                data: graph.nodes,
-                links: graph.links,
-                categories: categories,
-                roam: true,
-                label: {
-                    normal: {
-                        position: 'right',
-                        formatter: '{b}'
-                    }
-                },
-                lineStyle: {
-                    normal: {
-                        color: 'source',
-                        curveness: 0.3
-                    }
-                }
-            }
-        ]
-    };
-
-    myChart.setOption(option);
-}, 'xml');;
-if (option && typeof option === "object") {
-    myChart.setOption(option, true);
-}
-       </script>
+<script src={{ url_for("static",filename="data/file_import_data.js") }}></script>
 
 {% endblock %}
 
