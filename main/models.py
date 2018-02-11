@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 import numpy as np
+from functools import reduce
+import datetime
 import pandas as pd
 import os
 import re
@@ -123,12 +125,15 @@ class Pgv:
     '''
     columns = ["connector1", "pin1", "connector2", "pin2", "testType", "status", "value", "unit", "pin1_addr", "pin2_addr"]
     typedic = {'FC': 'insulation', 'CC': 'continuity'}
+    info_pattern = r"(?<=:)\s+([A-Z]{2})\s+([0-9]+)\s+([\S]+)\s*:\s+([0-9]+)\s+([A-Z]+)\s+([<>0-9.MK]+)\s+([A-Z]+)\s+([\S]+)"
+    time_pattern = r"(?<=测试中止)\s+([0-9]+[\s\S]+[0-9]+)\s*分析仪停止"
 
     def __init__(self, file_in):
         '''
         '''
         self._file_in = file_in
-        self.info_lists = None
+        self.pdTestLists = None
+        self.strDateTime = ""
         self._process()
 
     def _process(self):
@@ -139,24 +144,34 @@ class Pgv:
         fp = open(self._file_in, U'r')
         txt = fp.read()
         lists = []
-        re1 = re.compile("(?<=:)\s+([A-Z]{2})\s+([0-9]+)\s+([\S]+)\s*:\s+([0-9]+)\s+([A-Z]+)\s+([<>0-9.MK]+)\s+([A-Z]+)\s+([\S]+)")
+        time = ""
+        re1 = re.compile(Pgv.info_pattern+"|"+Pgv.time_pattern)
         for mat in re1.finditer(txt):
+            # print(mat.groups())
             line = mat.groups() #["command","addr1","pin1","addr2","status","value","unit","pin2"]
-            pin1_addr, pin2_addr, status, value, unit = line[1], line[3], line[4], line[5], line[6]
-            connector1, pin1 = self._connector_index(line[2])
-            connector2, pin2 = self._connector_index(line[7])
-            test_type = Pgv.typedic.get(line[0], 'NULL')
-            line = [connector1, pin1, connector2, pin2, test_type, status, value, unit, pin1_addr, pin2_addr]
-            lists.append(line)
+            if reduce(lambda x,y: x and y,line[:8] ):
+                # print("line[:8]",line[:8])
+                pin1_addr, pin2_addr, status, value, unit = line[1], line[3], line[4], line[5], line[6]
+                connector1, pin1 = self._connector_index(line[2])
+                connector2, pin2 = self._connector_index(line[7])
+                test_type = Pgv.typedic.get(line[0], 'NULL')
+                line = [connector1, pin1, connector2, pin2, test_type, status, value, unit, pin1_addr, pin2_addr]
+                lists.append(line)
+            elif line[8]:
+                time = line[8]
         fp.close()
-        self.info_lists = pd.DataFrame(lists, columns=Pgv.columns)
+        self.pdTestLists = pd.DataFrame(lists, columns=Pgv.columns)
+        self.strDateTime = time
         print(self.info_lists.shape)
-        
+
     def _connector_index(self, pin_name):
         '''
+        Can be omitted!
         In -- pin name
         Return -- Connector name
+        this is hardcoding method, don't fit every case
         '''
+        # print("pin_name",pin_name)
         re1 = re.compile("[0-9A-Z]+-*[0-9A-Z]*-*[0-9A-Z]*")
         mt = re1.search(pin_name)
         if mt:
@@ -165,13 +180,14 @@ class Pgv:
         else:
             return pin_name, ''
 
+
 class Format(object):
     def __init__(self, data):
         self._data = data
 
-    def jsons_DF(self):
-        self._data = pd.DataFrame(self._data)
-        return self._data
+    def jsons_to_DF(self):
+
+        return pd.DataFrame(self._data)
 
     # def continuty_test(self, df, start):
     #     row, col = df.shape
@@ -244,13 +260,13 @@ class Format(object):
     #     self._count()
     #     self._ratio()
 
-    def test_prog(self, start=0):
+    def jsons_to_testprog(self, start=0):
         '''
         '''
         col_data = [u"PIN1", u"PIN2", u"CHAPTER"]
         col_prog = [u"No", u"测试程序", u"章节号", u"备注"]
         No, pins, chapter = [], [], []
-        high_line = self._data
+        high_line = self.jsons_DF()
         row, col = high_line.shape
         for i in range(row):
             No.append(str(start + i))
@@ -266,18 +282,18 @@ class Format(object):
 
         return pd_prog
 
-    def test_report(self, thr=0.5):
-        '''
-        Print out
-        '''
-        lst = self._stats_sort(threshold=thr)
-        str_line = "===Node Name===PASS Ratio===\n"
-        for item in lst:
-            connector, passratio = item[0], item[1][2]
-            str_line += "%12s%10.2f%%\n" % (connector, passratio * 100)
-
-        with open(self._report_out, 'w') as fp:
-            fp.write(str_line)
+    # def to_txt_report(self, thr=0.5):
+    #     '''
+    #     Print out
+    #     '''
+    #     lst = self._stats_sort(threshold=thr)
+    #     str_line = "===Node Name===PASS Ratio===\n"
+    #     for item in lst:
+    #         connector, passratio = item[0], item[1][2]
+    #         str_line += "%12s%10.2f%%\n" % (connector, passratio * 100)
+    #
+    #     with open(self._report_out, 'w') as fp:
+    #         fp.write(str_line)
 
 class Save(object):
     keys = (u'chapter', u'pin1', u'pin2')
@@ -321,3 +337,15 @@ class Save(object):
         with open(path, 'wb') as fp:
             str_out = self.pdData.to_html()
             fp.write(str_out.encode('utf-8'))
+
+
+class DTime(object):
+    def __init__(self,strDTime):
+        self._datetime = datetime.datetime.strptime(strDTime,"%y %b %d  %X")
+        self.year = self._datetime.year
+        self.month = self._datetime.month
+        self.day = self._datetime.day
+        self.hour = self._datetime.hour
+        self.minute = self._datetime.minute
+        self.second = self._datetime.second
+

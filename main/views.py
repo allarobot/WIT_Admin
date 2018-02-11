@@ -48,9 +48,11 @@ def jsw():
 def ditmco():
     res = request.form["ditmcofile"]
     print(res)
-    pgv = Pgv(res)
-    print("pgv_info:", pgv.info_lists)
-    db.pgv_update(pgv.info_lists)
+    path = os.path.join(IMPORT_FOLDER,res)
+    pgv = Pgv(path)
+    print("pgv_time:", pgv.strDateTime)
+    print("pgv_info:", pgv.pdTestLists)
+    db.pgv_update(pgv.pdTestLists)
     flash("ditmco file %s been uploaded"%res)
     return render_template("pages/file_import.html")
 
