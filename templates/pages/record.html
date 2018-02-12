@@ -6,20 +6,20 @@
 
 {% block page_wrapper %}
         <div id="page-wrapper">
-            <div class="row">
-             <h1 class="page-header">Record</h1>
-                <!-- /.col-lg-12 -->
-            </div>
-            <div class="row">
-            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-            </div>
-            </div>
+            <!--<div class="row">-->
+             <!--<h1 class="page-header">Record</h1>-->
+                <!--&lt;!&ndash; /.col-lg-12 &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="input-group custom-search-form">-->
+                                <!--<input type="text" class="form-control" placeholder="Search...">-->
+                                <!--<span class="input-group-btn">-->
+                                <!--<button class="btn btn-default" type="button">-->
+                                    <!--<i class="fa fa-search"></i>-->
+                                <!--</button>-->
+                            <!--</span>-->
+            <!--</div>-->
+            <!--</div>-->
             <div class="row">
                     <div class="chat-panel panel panel-default">
                         <div class="panel-heading">
@@ -35,101 +35,23 @@
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
-                                            <strong class="primary-font">Jack</strong>
+                                            <strong class="primary-font">默认</strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 20 mins ago
+                                                <i class="fa fa-clock-o fa-fw"></i> 无
                                             </small>
                                         </div>
                                         <p>
-                                            前起传感器功能正常
+                                            记录。。。
                                         </p>
                                     </div>
                                 </li>
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Peter</strong>
-                                            <small class=" text-muted pull-right">
-                                                <i class="fa fa-clock-o fa-fw"></i> 18 mins ago</small>
 
-                                        </div>
-                                        <p>
-                                            主驾驶控制正常
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/FF00FF/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Alice</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 10 mins ago</small>
-                                        </div>
-                                        <p>
-                                           前起转向正常
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/000000/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="rimary-font">Eric</strong>
-                                            <small class=" text-muted pull-right">
-                                            <i class="fa fa-clock-o fa-fw"></i> 5 mins ago</small>
-                                        </div>
-                                        <p>
-                                            后起收放正常
-                                        </p>
-                                    </div>
-                                </li>
                             </ul>
 
                         </div>
                         <!-- /.panel-body -->
                         <div class="panel-footer">
                             <div class="input-group">
-                                <span class="input-group-btn">
-                                <div class="btn-group pull-left">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-chevron-down"></i>
-                                </button>
-                                <ul class="dropdown-menu slidedown">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-apple fa-fw"></i> Task 1
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-android fa-fw"></i> Task 2
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-linux fa-fw"></i> Task 3
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-windows fa-fw"></i> Task 4
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                </ul>
-                            </div>
-                                </span>
                                 <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                                 <span class="input-group-btn">
                                     <button class="btn btn-warning btn-sm" id="btn-chat">
@@ -146,23 +68,25 @@
 {% endblock %}
 
 {% block page_js %}
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+ <script type="text/html" id="note_record">
+<li class="left clearfix ">
+<span class="chat-img pull-left">
+ <img src="http://placehold.it/50/FF00FF/fff" alt="User Avatar" class="img-circle" />
+</span>
+ <div class="chat-body clearfix ">
+<div class="header">
+<strong class="primary-font"> str_user</strong>
+<small class=" text-muted pull-right">
+ <i class="fa fa-clock-o fa-fw"></i> str_datetime</small>
+</div>
+<p>str_note</p>
+</div>
+</li>
+</script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src={{ url_for("static",filename="data/record_data.js") }}> </script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    <script src={{ url_for('static',filename="data/record_data.js") }}
 {% endblock %}
 
 </html>
+

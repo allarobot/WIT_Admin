@@ -9,5 +9,6 @@ import config
 import os
 app.secret_key = os.urandom(24)
 app.config.from_object(config)
-app.run()
+if __name__ =="__main__":
+    app.run(host="0.0.0.0",port=5000)
 

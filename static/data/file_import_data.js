@@ -1,3 +1,4 @@
+$(function(){
 var dom = document.getElementById("graph_chart");
 var myChart = echarts.init(dom);
 var app = {};
@@ -71,3 +72,5 @@ $.get('static/data/les-miserables.xml', function (xml) {
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
 }
+
+})

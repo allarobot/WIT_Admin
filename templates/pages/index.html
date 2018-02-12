@@ -6,13 +6,9 @@
 
 {% block page_wrapper %}
         <div id="page-wrapper">
-            <div class="row">
-             <h1 class="page-header">Dashboard</h1>
-                <!-- /.col-lg-12 -->
-            </div>
 
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Testing Progress
@@ -22,23 +18,12 @@
                                         Actions
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="stackline" style="height: 400px"></div>
+                            <div id="testingProgress" style="height: 400px"></div>
                             <!--<div id="morris-area-chart"></div>-->
                         </div>
                         <!-- /.panel-body -->
@@ -46,13 +31,13 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                         <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> HIGH Distribution
                         </div>
                         <div class="panel-body">
-                            <div id="piechart" style="height:400px"></div>
+                            <div id="highDistribution" style="height:400px"></div>
                             <!--<div id="morris-donut-chart"></div>-->
                             <!--<a href="#" class="btn btn-default btn-block">View Details</a>-->
                         </div>
@@ -61,8 +46,7 @@
                     <!-- /.panel -->
                     <!-- /.panel -->
                 </div>
-            </div>
-            <div class="row">
+
                 <div class="col-lg-12">
                 <div class="panel panel-default">
                         <div class="panel-heading">
@@ -72,12 +56,11 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
-
-                                <div class="col-lg-8">
+                                <div class="col-lg-10">
                                     <!--<div id="morris-bar-chart"></div>-->
-                                    <div id="ybars" style="height:500px"></div>
+                                    <div id="chapterStatus" style="height:500px"></div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-2">
                                 <form role="form">
                                     <div class="form-group">
                                         <label>Multiple Selects</label>
@@ -128,7 +111,7 @@
 {% endblock %}
 
 {% block page_js %}
-    <script src="{{ url_for('static', filename='data/dashboard_data.js') }}"> </script>
+    <script src="{{ url_for('static', filename='data/index_data1.js') }}"> </script>
 {% endblock %}
 
 </html>
